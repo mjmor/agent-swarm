@@ -1,0 +1,259 @@
+{
+  "collusion-wiki/additional-findings.html": {
+    "url": "https://collusion.wiki/additional-findings",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:34.196167+00:00",
+    "status": "ok",
+    "sha256": "98a2e30f1f8ae8df653dfd6023887af453f401ce670b7e352204656c87d9ac50",
+    "bytes": 11543,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "collusion-wiki/coverage-gaps.csv": {
+    "url": "https://collusion.wiki/explorer/download/coverage-gaps.csv",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.928388+00:00",
+    "status": "ok",
+    "sha256": "1f9f80864910d4c49e8ff24a35b1931b87eaeae9d1282c3efa3d6d7b0ee279dd",
+    "bytes": 82085,
+    "content_type": "text/csv; charset=utf-8"
+  },
+  "collusion-wiki/events.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/events.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:35.910189+00:00",
+    "status": "ok",
+    "sha256": "989780118de3dc05031ee5920a761c565a97b64d3721688593adc0794fcfb7b8",
+    "bytes": 486683,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/full-wiki-logs.zip": {
+    "url": "https://collusion.wiki/explorer/download/full-wiki-logs.zip",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:34.229725+00:00",
+    "status": "ok",
+    "sha256": "eb68aa12d26bf189d8bfc4ce47f4d8af66ae5ba7ebbadd429738297a3cbb25ae",
+    "bytes": 4228605,
+    "content_type": "application/zip"
+  },
+  "collusion-wiki/labels.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/labels.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.024609+00:00",
+    "status": "ok",
+    "sha256": "c1cd171f4794ea3e59803c92aba9dc552587db984dc43c7939338d5845c59860",
+    "bytes": 167875,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/links.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/links.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.646533+00:00",
+    "status": "ok",
+    "sha256": "adf65a707cde395627d0b96b5dd0a98863c91f3e14ecdf40a45f4d5e0f185351",
+    "bytes": 2178607,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/manifest.json.gz": {
+    "url": "https://collusion.wiki/explorer/download/manifest.json.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.099163+00:00",
+    "status": "ok",
+    "sha256": "ee4c5785d61054ef993a4a10708d9698d7d1f86ac210810b6899bae035eda092",
+    "bytes": 6132,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/other-wikis.json.gz": {
+    "url": "https://collusion.wiki/explorer/download/other-wikis.json.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.157851+00:00",
+    "status": "ok",
+    "sha256": "2047f3a2915fb3d237ed03d01deef306d11021a6ffc42a57a5f60918d850a5fd",
+    "bytes": 4920,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/pages.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/pages.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:35.312833+00:00",
+    "status": "ok",
+    "sha256": "2cffa83e0cc8de3dc467d9e9b03e1f735f54b4fde5a191f9e01f7e9dfee51f3a",
+    "bytes": 233553,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/records.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/records.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.248415+00:00",
+    "status": "ok",
+    "sha256": "9b3cfbc87a491ccfe619098e6ee290cfaeb6d105625e23843f2671c8bd6c4bd2",
+    "bytes": 3865410,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/report.html": {
+    "url": "https://collusion.wiki/",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:34.021449+00:00",
+    "status": "ok",
+    "sha256": "ae20dc08c668a9b35487c6547486eb400c01a12b48bc6a1d031312370d708e4c",
+    "bytes": 157567,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "collusion-wiki/revisions.jsonl.gz": {
+    "url": "https://collusion.wiki/explorer/download/revisions.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:35.405890+00:00",
+    "status": "ok",
+    "sha256": "9c2a4ef0ccbfb5b42be8422342a6bd3a389a4a047bc891e3148354dd65b63c96",
+    "bytes": 3226133,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/shortener-logs.json.gz": {
+    "url": "https://collusion.wiki/explorer/download/shortener-logs.json.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.204542+00:00",
+    "status": "ok",
+    "sha256": "26a916dae826cecddb1ce373efbb19719ec3e3d0fd79ff6b27c80780621a729f",
+    "bytes": 14802,
+    "content_type": "application/gzip"
+  },
+  "collusion-wiki/site-coverage.csv": {
+    "url": "https://collusion.wiki/explorer/download/site-coverage.csv",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:36.870679+00:00",
+    "status": "ok",
+    "sha256": "1091014ca713391dd68d9c658550b2a00e15cee83e53513aa07f9b1862efda01",
+    "bytes": 111974,
+    "content_type": "text/csv; charset=utf-8"
+  },
+  "metr/hf-incident-investigation.html": {
+    "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:22:40.150121+00:00",
+    "status": "ok",
+    "sha256": "405de9f2b28d6b431fae6d5bbdddf0b1ce5d764b0fa4360b8fb24da1203ba565",
+    "bytes": 429995,
+    "content_type": "text/html; charset=UTF-8"
+  },
+  "openai-official/chatgpt-user.json": {
+    "url": "https://openai.com/chatgpt-user.json",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:22:40.029316+00:00",
+    "status": "ok",
+    "sha256": "457798dfbea98bc0d1d5d10f16c984d9e60521a6b3cf4a0bae4fa5d6fb52abbd",
+    "bytes": 8322,
+    "content_type": "application/octet-stream"
+  },
+  "openai-official/hf-incident-and-the-road-ahead.html": {
+    "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:24:30.402682+00:00",
+    "status": "error",
+    "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://openai.com/index/hugging-face-incident-and-the-road-ahead/'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+  },
+  "openai-official/hf-incident-technical-report.pdf": {
+    "url": "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:22:39.543306+00:00",
+    "status": "ok",
+    "sha256": "dd635cf6e5f39f0e1f646f08c36549090d77156ed89cbd3d733ed496648cae9c",
+    "bytes": 521159,
+    "content_type": "application/pdf"
+  },
+  "rubyhack/report.html": {
+    "url": "https://rubyhack.ai/",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:36.977077+00:00",
+    "status": "ok",
+    "sha256": "166caaddae1fd061403eef5d2c75cb2729a9cf5fde16cb1e867b767b935079f6",
+    "bytes": 51668,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "rubyhack/rubygems-legacy-api-key-advisory.html": {
+    "url": "https://blog.rubygems.org/2026/07/22/security-advisory-legacy-api-key-leak.html",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:22:37.871866+00:00",
+    "status": "ok",
+    "sha256": "b76bd7e34a7ea35bf726d50ecc5b7002cd77fcd9baba957f54c2ee6264fdcfaa",
+    "bytes": 63398,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "rubyhack/socket-gemstuffer.html": {
+    "url": "https://socket.dev/blog/gemstuffer",
+    "kind": "reference",
+    "fetched_at": "2026-09-25T23:22:37.098907+00:00",
+    "status": "ok",
+    "sha256": "40ddd51a074fb5a6a56ace126b062c0004cce5974e9679d3430762b645760da5",
+    "bytes": 456899,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "rubyhack/uploads-per-day.csv": {
+    "url": "https://rubyhack.ai/data/uploads-per-day.csv",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:24:29.915186+00:00",
+    "status": "ok",
+    "sha256": "4d145ef3064e92e5321a0f5a8a42549f6561eed39328f54384b000513c1967c9",
+    "bytes": 845,
+    "content_type": "text/csv; charset=utf-8"
+  },
+  "rubyhack/uploads-per-day.html": {
+    "url": "https://rubyhack.ai/figures/uploads-per-day.html",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:37.052645+00:00",
+    "status": "ok",
+    "sha256": "4c9d1e49a2d8c69ccdb7ed9a93a6bcf7c95162b21f77c8a3b1c423829066bd52",
+    "bytes": 7205,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "swarmtraces/article-data.js": {
+    "url": "https://swarmtraces.org/article/data.js",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:38.363598+00:00",
+    "status": "ok",
+    "sha256": "c6ed19be183db364580c6c2b28d5d936009ee02e653aaefe66a49373a35fe7fd",
+    "bytes": 15721,
+    "content_type": "application/javascript; charset=utf-8"
+  },
+  "swarmtraces/redacted.jsonl.gz": {
+    "url": "https://swarmtraces.org/data/final/redacted.jsonl.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:38.471654+00:00",
+    "status": "ok",
+    "sha256": "7b66ab21674de52fcd3f557652f68b1801170c998e2f266862124e6edf283488",
+    "bytes": 15214685,
+    "content_type": "application/octet-stream"
+  },
+  "swarmtraces/report.html": {
+    "url": "https://swarmtraces.org/",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:38.111988+00:00",
+    "status": "ok",
+    "sha256": "9652e11ba4538ca632128525bb87bf3855a12bc21d8616754cc688e469544a13",
+    "bytes": 77905,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "termina-swarm-map/agent-pastes-2026-09-08.tar.gz": {
+    "url": "https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:24:29.993112+00:00",
+    "status": "error",
+    "error": "HTTPStatusError: Server error '503 OK' for url 'https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+  },
+  "transluce-urlquery/report.html": {
+    "url": "https://transluce.org/agent-activity",
+    "kind": "report_html",
+    "fetched_at": "2026-09-25T23:22:33.639581+00:00",
+    "status": "ok",
+    "sha256": "8ba2df2fb0ad5fd782d8552868a655c66127bcebb0c6ced3dbd896fe999ddb1b",
+    "bytes": 184010,
+    "content_type": "text/html; charset=utf-8"
+  },
+  "transluce-urlquery/urlquery-agent-activity-2026-09-23.zip": {
+    "url": "https://transluce.org/data/urlquery-agent-activity-2026-09-23.zip",
+    "kind": "dataset",
+    "fetched_at": "2026-09-25T23:22:33.777857+00:00",
+    "status": "ok",
+    "sha256": "969a13fbd7d80d7e1556eef58a347f52ecdd85661c541f6c0d1d6f5e2a86570d",
+    "bytes": 4570708,
+    "content_type": "application/zip"
+  }
+}

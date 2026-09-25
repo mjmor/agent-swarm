@@ -1,0 +1,18 @@
+# Data never enters git: raw downloads contain attack payloads, malicious package
+# code, and possibly residual PII. Reproduce with `uv run agent-swarm acquire`;
+# sources/manifest.json (committed) pins the sha256 of every artifact.
+/data/
+*.part
+
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+.claude/worktrees/
+.claude/.cc-writes/
+docs/superpowers/
+
+.DS_Store

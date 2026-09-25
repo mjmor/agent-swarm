@@ -1,0 +1,191 @@
+# Pinned source artifacts. `uv run agent-swarm acquire` downloads each into
+# data/raw/<source id>/<name> and records sha256/size/timestamp in sources/manifest.json.
+#
+# kind:
+#   report_html  - snapshot of the incident write-up itself
+#   dataset      - bulk data published alongside a report
+#   reference    - third-party material a report cites (official disclosures, blog posts)
+
+[[source]]
+id = "transluce-urlquery"
+title = "Early rogue AI agent activity and attempts to hack found on urlquery.net"
+report_url = "https://transluce.org/agent-activity"
+published = "2026-09-23"
+
+[[source.artifact]]
+name = "report.html"
+url = "https://transluce.org/agent-activity"
+kind = "report_html"
+
+[[source.artifact]]
+name = "urlquery-agent-activity-2026-09-23.zip"
+url = "https://transluce.org/data/urlquery-agent-activity-2026-09-23.zip"
+kind = "dataset"
+
+[[source]]
+id = "collusion-wiki"
+title = "Discovery of a new OpenAI agent message board"
+report_url = "https://collusion.wiki/"
+published = "2026-09-04"
+
+[[source.artifact]]
+name = "report.html"
+url = "https://collusion.wiki/"
+kind = "report_html"
+
+[[source.artifact]]
+name = "additional-findings.html"
+url = "https://collusion.wiki/additional-findings"
+kind = "report_html"
+
+[[source.artifact]]
+name = "full-wiki-logs.zip"
+url = "https://collusion.wiki/explorer/download/full-wiki-logs.zip"
+kind = "dataset"
+
+[[source.artifact]]
+name = "pages.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/pages.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "revisions.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/revisions.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "events.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/events.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "labels.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/labels.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "manifest.json.gz"
+url = "https://collusion.wiki/explorer/download/manifest.json.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "other-wikis.json.gz"
+url = "https://collusion.wiki/explorer/download/other-wikis.json.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "shortener-logs.json.gz"
+url = "https://collusion.wiki/explorer/download/shortener-logs.json.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "records.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/records.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "links.jsonl.gz"
+url = "https://collusion.wiki/explorer/download/links.jsonl.gz"
+kind = "dataset"
+
+[[source.artifact]]
+name = "site-coverage.csv"
+url = "https://collusion.wiki/explorer/download/site-coverage.csv"
+kind = "dataset"
+
+[[source.artifact]]
+name = "coverage-gaps.csv"
+url = "https://collusion.wiki/explorer/download/coverage-gaps.csv"
+kind = "dataset"
+
+[[source]]
+id = "rubyhack"
+title = "OpenAI agents carried out an undisclosed cyber-attack on RubyGems"
+report_url = "https://rubyhack.ai/"
+published = "2026-09-11"
+
+[[source.artifact]]
+name = "report.html"
+url = "https://rubyhack.ai/"
+kind = "report_html"
+
+[[source.artifact]]
+name = "uploads-per-day.html"
+url = "https://rubyhack.ai/figures/uploads-per-day.html"
+kind = "report_html"
+
+[[source.artifact]]
+name = "uploads-per-day.csv"
+url = "https://rubyhack.ai/data/uploads-per-day.csv"
+kind = "dataset"
+
+[[source.artifact]]
+name = "socket-gemstuffer.html"
+url = "https://socket.dev/blog/gemstuffer"
+kind = "reference"
+
+[[source.artifact]]
+name = "rubygems-legacy-api-key-advisory.html"
+url = "https://blog.rubygems.org/2026/07/22/security-advisory-legacy-api-key-leak.html"
+kind = "reference"
+
+[[source]]
+id = "swarmtraces"
+title = "Revealing the details of how OpenAI agents hacked Hugging Face"
+report_url = "https://swarmtraces.org/"
+published = "2026-09-25"
+
+[[source.artifact]]
+name = "report.html"
+url = "https://swarmtraces.org/"
+kind = "report_html"
+
+[[source.artifact]]
+name = "article-data.js"
+url = "https://swarmtraces.org/article/data.js"
+kind = "report_html"
+
+[[source.artifact]]
+name = "redacted.jsonl.gz"
+url = "https://swarmtraces.org/data/final/redacted.jsonl.gz"
+kind = "dataset"
+
+[[source]]
+id = "termina-swarm-map"
+title = "Swarm map: venues and agent handles (community, linked from rubyhack.ai / collusion.wiki)"
+report_url = "https://swarm.termina.digital/"
+
+[[source.artifact]]
+name = "agent-pastes-2026-09-08.tar.gz"
+url = "https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz"
+kind = "dataset"
+
+[[source]]
+id = "openai-official"
+title = "OpenAI disclosures on the Hugging Face / Artifactory incident"
+report_url = "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+
+[[source.artifact]]
+name = "hf-incident-technical-report.pdf"
+url = "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf"
+kind = "reference"
+
+[[source.artifact]]
+name = "hf-incident-and-the-road-ahead.html"
+url = "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
+kind = "reference"
+
+[[source.artifact]]
+name = "chatgpt-user.json"
+url = "https://openai.com/chatgpt-user.json"
+kind = "reference"
+
+[[source]]
+id = "metr"
+title = "METR investigation of the OpenAI Hugging Face incident"
+report_url = "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
+
+[[source.artifact]]
+name = "hf-incident-investigation.html"
+url = "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
+kind = "reference"
