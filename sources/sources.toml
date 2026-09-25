@@ -5,6 +5,10 @@
 #   report_html  - snapshot of the incident write-up itself
 #   dataset      - bulk data published alongside a report
 #   reference    - third-party material a report cites (official disclosures, blog posts)
+#
+# manual = true marks artifacts that can't be fetched automatically. `acquire` never
+# downloads them; it registers the file if someone saved it at data/raw/<id>/<name>, and
+# flags it as a duplicate if it's byte-identical to another artifact.
 
 [[source]]
 id = "transluce-urlquery"
@@ -170,10 +174,12 @@ name = "hf-incident-technical-report.pdf"
 url = "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf"
 kind = "reference"
 
+# openai.com blocks automated fetches (403); save the page by hand (browser "Save as PDF").
 [[source.artifact]]
-name = "hf-incident-and-the-road-ahead.html"
+name = "hf-incident-and-the-road-ahead.pdf"
 url = "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
 kind = "reference"
+manual = true
 
 [[source.artifact]]
 name = "chatgpt-user.json"

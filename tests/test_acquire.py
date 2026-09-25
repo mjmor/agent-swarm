@@ -132,3 +132,86 @@ def test_fetch_all_only_filters_by_source(sources_file: Path, tmp_path: Path):
         only={"broken"},
     )
     assert calls == ["https://broken.example/dump.tar.gz"]
+
+
+MANUAL_TOML = """
+[[source]]
+id = "demo"
+title = "Demo report"
+report_url = "https://demo.example/report"
+
+[[source.artifact]]
+name = "report.html"
+url = "https://demo.example/report"
+kind = "report_html"
+
+[[source.artifact]]
+name = "blog.pdf"
+url = "https://blocked.example/blog"
+kind = "reference"
+manual = true
+"""
+
+
+@pytest.fixture
+def manual_sources(tmp_path: Path) -> Path:
+    p = tmp_path / "manual.toml"
+    p.write_text(MANUAL_TOML)
+    return p
+
+
+def test_load_sources_reads_manual_flag(manual_sources: Path):
+    assert [a.manual for a in load_sources(manual_sources)] == [False, True]
+
+
+def test_manual_artifact_is_registered_not_downloaded(manual_sources: Path, tmp_path: Path):
+    raw = tmp_path / "raw"
+    (raw / "demo").mkdir(parents=True)
+    (raw / "demo" / "blog.pdf").write_bytes(b"%PDF-1.4 blog")
+    calls: list[str] = []
+
+    manifest = fetch_all(
+        load_sources(manual_sources), raw, tmp_path / "m.json", client=mock_client(calls)
+    )
+
+    assert "https://blocked.example/blog" not in calls
+    entry = manifest["demo/blog.pdf"]
+    assert entry["status"] == "ok"
+    assert entry["origin"] == "manual"
+    assert entry["sha256"] == hashlib.sha256(b"%PDF-1.4 blog").hexdigest()
+
+
+def test_missing_manual_artifact_is_reported_not_fetched(manual_sources: Path, tmp_path: Path):
+    calls: list[str] = []
+    manifest = fetch_all(
+        load_sources(manual_sources),
+        tmp_path / "raw",
+        tmp_path / "m.json",
+        client=mock_client(calls),
+    )
+    assert "https://blocked.example/blog" not in calls
+    entry = manifest["demo/blog.pdf"]
+    assert entry["status"] == "missing_manual"
+    assert "raw/demo/blog.pdf" in entry["error"]
+
+
+def test_manual_artifact_duplicating_another_is_flagged(manual_sources: Path, tmp_path: Path):
+    raw = tmp_path / "raw"
+    (raw / "demo").mkdir(parents=True)
+    (raw / "demo" / "blog.pdf").write_bytes(PAYLOADS["https://demo.example/report"])
+
+    manifest = fetch_all(
+        load_sources(manual_sources), raw, tmp_path / "m.json", client=mock_client([])
+    )
+
+    assert manifest["demo/blog.pdf"]["status"] == "duplicate"
+    assert manifest["demo/blog.pdf"]["duplicate_of"] == "demo/report.html"
+
+
+def test_full_run_prunes_artifacts_no_longer_in_sources(sources_file: Path, tmp_path: Path):
+    manifest_path = tmp_path / "m.json"
+    manifest_path.write_text(json.dumps({"gone/old.html": {"status": "error"}}))
+    manifest = fetch_all(
+        load_sources(sources_file), tmp_path / "raw", manifest_path, client=mock_client([])
+    )
+    assert "gone/old.html" not in manifest

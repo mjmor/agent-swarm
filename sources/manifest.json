@@ -143,12 +143,15 @@
     "bytes": 8322,
     "content_type": "application/octet-stream"
   },
-  "openai-official/hf-incident-and-the-road-ahead.html": {
+  "openai-official/hf-incident-and-the-road-ahead.pdf": {
     "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
     "kind": "reference",
-    "fetched_at": "2026-09-25T23:24:30.402682+00:00",
-    "status": "error",
-    "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://openai.com/index/hugging-face-incident-and-the-road-ahead/'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    "fetched_at": "2026-09-25T23:58:44.643616+00:00",
+    "status": "duplicate",
+    "origin": "manual",
+    "sha256": "dd635cf6e5f39f0e1f646f08c36549090d77156ed89cbd3d733ed496648cae9c",
+    "bytes": 521159,
+    "duplicate_of": "openai-official/hf-incident-technical-report.pdf"
   },
   "openai-official/hf-incident-technical-report.pdf": {
     "url": "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
@@ -234,7 +237,7 @@
   "termina-swarm-map/agent-pastes-2026-09-08.tar.gz": {
     "url": "https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz",
     "kind": "dataset",
-    "fetched_at": "2026-09-25T23:24:29.993112+00:00",
+    "fetched_at": "2026-09-25T23:58:44.111522+00:00",
     "status": "error",
     "error": "HTTPStatusError: Server error '503 OK' for url 'https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
   },

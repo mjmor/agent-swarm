@@ -16,6 +16,7 @@ class Artifact:
     name: str
     url: str
     kind: str
+    manual: bool = False
 
     @property
     def key(self) -> str:
@@ -25,7 +26,13 @@ class Artifact:
 def load_sources(path: Path) -> list[Artifact]:
     config = tomllib.loads(Path(path).read_text())
     return [
-        Artifact(source_id=src["id"], name=a["name"], url=a["url"], kind=a["kind"])
+        Artifact(
+            source_id=src["id"],
+            name=a["name"],
+            url=a["url"],
+            kind=a["kind"],
+            manual=a.get("manual", False),
+        )
         for src in config["source"]
         for a in src.get("artifact", [])
     ]
@@ -63,6 +70,23 @@ def _download(client: httpx.Client, artifact: Artifact, dest: Path) -> dict:
     }
 
 
+def _register_manual(artifact: Artifact, dest: Path, manifest: dict) -> dict:
+    if not dest.exists():
+        return {
+            "status": "missing_manual",
+            "error": f"download {artifact.url} by hand and save it as {dest}",
+        }
+    sha = _sha256(dest)
+    entry = {"status": "ok", "origin": "manual", "sha256": sha, "bytes": dest.stat().st_size}
+    twin = next(
+        (k for k, v in manifest.items() if k != artifact.key and v.get("sha256") == sha),
+        None,
+    )
+    if twin:
+        entry |= {"status": "duplicate", "duplicate_of": twin}
+    return entry
+
+
 def fetch_all(
     artifacts: list[Artifact],
     raw_dir: Path,
@@ -76,7 +100,11 @@ def fetch_all(
         follow_redirects=True, timeout=120, headers={"User-Agent": USER_AGENT}
     )
 
-    for artifact in artifacts:
+    if not only:
+        wanted = {a.key for a in artifacts}
+        manifest = {k: v for k, v in manifest.items() if k in wanted}
+
+    for artifact in sorted(artifacts, key=lambda a: a.manual):
         if only and artifact.source_id not in only:
             continue
         dest = Path(raw_dir) / artifact.source_id / artifact.name
@@ -87,6 +115,10 @@ def fetch_all(
             "kind": artifact.kind,
             "fetched_at": datetime.now(UTC).isoformat(),
         }
+        if artifact.manual:
+            manifest[artifact.key] = base | _register_manual(artifact, dest, manifest)
+            print(f"[{manifest[artifact.key]['status']:>5}] {artifact.key}")
+            continue
         try:
             manifest[artifact.key] = base | _download(client, artifact, dest)
         except httpx.HTTPError as e:

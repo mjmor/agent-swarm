@@ -48,6 +48,8 @@ uv run jupyter lab                        # notebooks
 
 If `uv` can't write its cache in a sandboxed shell, set `UV_CACHE_DIR=$TMPDIR/uv-cache`.
 
+`acquire` is idempotent. It skips files whose sha256 matches the manifest and prunes manifest entries no longer in `sources.toml`. Artifacts marked `manual = true` are never downloaded. If someone saved one by hand at `data/raw/<source id>/<name>`, it's registered (status `ok`, `origin: manual`); otherwise it's reported as `missing_manual`. A hand-saved file that is byte-identical to another artifact is flagged `duplicate`.
+
 ## Git workflow
 
 - Public repo: https://github.com/mjmor/agent-swarm. Setup, data acquisition, surveys and plans were committed directly to `main`.
@@ -118,8 +120,8 @@ On 2026-05-11 and 05-12, agents uploaded over 2,000 malicious gems. They used Ru
 - `hf-incident-technical-report.pdf`: OpenAI's technical report on the Hugging Face/Artifactory incident, with a timeline and techniques. It is the main source for the Artifactory message board (from 5/12) and the 5/26 Artifactory exploit.
 - `chatgpt-user.json`: OpenAI's published ChatGPT-User egress prefixes (230 IPv4 /28s). **This is the live list** (creationTime 2026-09-25). The collusion.wiki report used the 2025-10-25 Wayback snapshot, and historical snapshots are needed for May–July matching.
 - `metr/hf-incident-investigation.html`: METR's independent investigation.
-- `openai-official/hf-incident-and-the-road-ahead.html` returns **403** (bot protection); it's recorded as an error in the manifest.
-- `termina-swarm-map/agent-pastes-2026-09-08.tar.gz` (a community venue/handle map) returns **503** ("public exports temporarily unavailable"). Re-run `acquire --only termina-swarm-map` later.
+- `openai-official/hf-incident-and-the-road-ahead.pdf`: the OpenAI blog post. openai.com returns **403** to automated fetches, so it is a `manual = true` artifact that has to be saved by hand (browser "Save as PDF") at that path. The first hand download turned out to be byte-identical to the technical report, and the manifest flags it as `duplicate`.
+- `termina-swarm-map/agent-pastes-2026-09-08.tar.gz` (a community venue/handle map) returns **503** ("public exports temporarily unavailable"). **Pending:** the owner asked that it be retried periodically. Re-run `uv run agent-swarm acquire --only termina-swarm-map` at the start of each work session and when a stage finishes.
 
 ### Cross-dataset observations (first pass, to be validated in the plan)
 
