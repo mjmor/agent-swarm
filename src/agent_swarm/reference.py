@@ -64,7 +64,14 @@ CONFIDENCE_MAP: dict[str, dict[str | None, str]] = {
         "background": "low",
         "review_required": "unrated",
     },
-    "collusion-wiki": {"not_independently_authenticated": "medium"},
+    "collusion-wiki": {
+        "not_independently_authenticated": "medium",
+        "publisher_selected_agent_content": "medium",
+        "task_or_exchange_signal": "medium",
+        "publisher_selected_plus_task_or_exchange_signal": "medium",
+        "linked_artifact": "medium",
+        "prior_reviewed_task_reference": "medium",
+    },
     "swarmtraces": {"vendor_confirmed_match": "high"},
     "rubyhack": {"publisher_listed": "medium"},
 }
