@@ -1,10 +1,6 @@
 import argparse
-from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-SOURCES_TOML = REPO_ROOT / "sources" / "sources.toml"
-MANIFEST = REPO_ROOT / "sources" / "manifest.json"
-RAW_DIR = REPO_ROOT / "data" / "raw"
+from agent_swarm.paths import MANIFEST, RAW_DIR, SOURCES_TOML
 
 
 def main() -> None:
