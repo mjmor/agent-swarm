@@ -6,8 +6,21 @@ from urllib.parse import urlsplit
 INVISIBLE = "".join(map(chr, (0x200B, 0x200C, 0x200D, 0x2060, 0xFEFF)))
 URL_RE = re.compile(rf"https?://[^\s<>\"'`{{}}|\\^\[\]{INVISIBLE}]+", re.IGNORECASE)
 TRAILING_PUNCT = ".,;:!?'\""
-PLACEHOLDER_RE = re.compile(r"\[(?:REDACTED|SHORTENER|SERVICE|API KEY)[^\]]*\]")
+PLACEHOLDER_RE = re.compile(
+    r"\[(?:REDACTED|SHORTENER|SERVICE|API KEY|CREDENTIAL|REDIRECT|ENCODED|operational URL omitted)"
+    r"[^\]]*\]"
+)
 REDACTION_RE = re.compile(r"\[REDACTED:([a-z_]+)")
+UNTYPED_PLACEHOLDERS = {
+    "api_key": re.compile(r"\[API KEY[^\]]*\]"),
+    "credential": re.compile(r"\[CREDENTIAL[^\]]*\]"),
+    "encoded_blob": re.compile(r"\[ENCODED BLOB[^\]]*\]"),
+    "operational_url": re.compile(r"\[operational URL omitted[^\]]*\]"),
+    "redirect_url": re.compile(r"\[REDIRECT URL[^\]]*\]"),
+    "sensitive_content": re.compile(r"\[REDACTED SENSITIVE CONTENT\]"),
+    "service": re.compile(r"\[SERVICE [^\]]*\]"),
+    "shortener": re.compile(r"\[SHORTENER[^\]]*\]"),
+}
 LABEL_RE = re.compile(r"^(?!-)[a-z0-9-]{1,63}(?<!-)$")
 
 
@@ -59,9 +72,11 @@ def normalize_host(url_or_host: str) -> str | None:
 
 
 def redaction_types(text: str | None) -> list[str]:
-    if not text:
+    if not text or "[" not in text:
         return []
-    return sorted(set(REDACTION_RE.findall(text)))
+    found = set(REDACTION_RE.findall(text))
+    found.update(kind for kind, pattern in UNTYPED_PLACEHOLDERS.items() if pattern.search(text))
+    return sorted(found)
 
 
 def nfkc_handle(s: str) -> str:
