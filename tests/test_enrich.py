@@ -191,3 +191,35 @@ def test_enrich_cli_dispatches(monkeypatch):
     )
     agent_swarm.main(["enrich", "wayback"])
     assert calls == ["wayback"]
+
+
+def test_wayback_cdx_retries_then_skips_unavailable_files(tmp_path: Path):
+    ok = json.dumps(
+        [
+            ["timestamp", "original", "digest", "statuscode"],
+            ["20260501000000", "https://openai.com/gptbot.json", "D", "200"],
+        ]
+    ).encode()
+    attempts: dict[str, int] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        target = request.url.params.get("url", "")
+        attempts[target] = attempts.get(target, 0) + 1
+        if "gptbot" in target:
+            return httpx.Response(200, content=ok) if attempts[target] > 1 else httpx.Response(503)
+        if "cdx" in str(request.url):
+            return httpx.Response(503)
+        return httpx.Response(200, content=b"{}")
+
+    clock = FakeClock()
+    log = enrich.run_enrichment(
+        "wayback",
+        processed_dir=tmp_path,
+        raw_dir=tmp_path / "raw",
+        lists_dir=tmp_path / "lists",
+        client=httpx.Client(transport=httpx.MockTransport(handler)),
+        clock=clock,
+    )
+    assert log["key"].to_list() == ["gptbot_20260501000000"]
+    assert attempts["https://openai.com/chatgpt-user.json"] == enrich.CDX_ATTEMPTS
+    assert clock.sleeps

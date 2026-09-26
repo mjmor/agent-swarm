@@ -123,6 +123,7 @@ WAYBACK_FILES = [
     "https://openai.com/searchbot.json",
 ]
 CDX_URL = "https://web.archive.org/cdx/search/cdx"
+CDX_ATTEMPTS = 4
 URLQUERY_PER_STRATUM = 25
 URLQUERY_SEED = 20260926
 TARGETS = {
@@ -132,7 +133,24 @@ TARGETS = {
 }
 
 
-def _items_for(target: str, processed_dir: Path, client: httpx.Client) -> list[tuple[str, str]]:
+def _cdx_rows(client: httpx.Client, url: str, clock) -> list[list[str]]:
+    params = {"url": url, "output": "json", "from": "2025", "to": "2026"}
+    for attempt in range(CDX_ATTEMPTS):
+        try:
+            resp = client.get(CDX_URL, params=params)
+            if resp.status_code == 200:
+                return resp.json() or []
+        except httpx.HTTPError:
+            pass
+        if attempt < CDX_ATTEMPTS - 1:
+            clock.sleep(2**attempt * 5)
+    print(f"[wayback] CDX unavailable for {url} after {CDX_ATTEMPTS} attempts; skipped")
+    return []
+
+
+def _items_for(
+    target: str, processed_dir: Path, client: httpx.Client, clock=time
+) -> list[tuple[str, str]]:
     if target == "rubygems":
         return rubygems_items(pl.read_parquet(processed_dir / "indicators.parquet"))
     if target == "urlquery-sample":
@@ -143,11 +161,7 @@ def _items_for(target: str, processed_dir: Path, client: httpx.Client) -> list[t
     if target == "wayback":
         items = []
         for url in WAYBACK_FILES:
-            params = {"url": url, "output": "json", "from": "2025", "to": "2026"}
-            resp = client.get(CDX_URL, params=params)
-            resp.raise_for_status()
-            rows = resp.json()
-            if rows:
+            if rows := _cdx_rows(client, url, clock):
                 items += wayback_items(rows)
         return items
     raise KeyError(target)
@@ -162,7 +176,7 @@ def run_enrichment(
     clock=time,
 ) -> pl.DataFrame:
     client = client or _default_client()
-    items = _items_for(target, Path(processed_dir), client)
+    items = _items_for(target, Path(processed_dir), client, clock)
     Path(lists_dir).mkdir(parents=True, exist_ok=True)
     (Path(lists_dir) / f"{target}.items.tsv").write_text("".join(f"{k}\t{u}\n" for k, u in items))
     return fetch_many(
