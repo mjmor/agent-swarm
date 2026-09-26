@@ -100,3 +100,15 @@ def test_redaction_types_include_untyped_placeholders():
         "shortener",
         "username",
     ]
+
+
+def test_registrable_domain():
+    from agent_swarm.textutil import registrable_domain
+
+    assert registrable_domain("viz.aihw.gov.au") == "aihw.gov.au"
+    assert registrable_domain("api.datausa.io") == "datausa.io"
+    assert registrable_domain("www.bbc.co.uk") == "bbc.co.uk"
+    assert registrable_domain("cors.bwa.workers.dev") == "bwa.workers.dev"
+    assert registrable_domain("jqp.vercel.app") == "jqp.vercel.app"
+    assert registrable_domain("sec.gov") == "sec.gov"
+    assert registrable_domain("10.0.0.1") == "10.0.0.1"

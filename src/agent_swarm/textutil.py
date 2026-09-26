@@ -83,3 +83,28 @@ def nfkc_handle(s: str) -> str:
     folded = unicodedata.normalize("NFKC", s)
     visible = "".join(ch for ch in folded if unicodedata.category(ch) != "Cf")
     return visible.strip().casefold()
+
+
+SECOND_LEVEL = {"co", "com", "gov", "org", "net", "ac", "edu"}
+SHARED_HOSTING = {
+    "workers.dev",
+    "vercel.app",
+    "herokuapp.com",
+    "netlify.app",
+    "github.io",
+    "glitch.me",
+}
+
+
+def registrable_domain(host: str) -> str:
+    try:
+        ipaddress.ip_address(host)
+        return host
+    except ValueError:
+        pass
+    labels = host.lower().removeprefix("www.").split(".")
+    if ".".join(labels[-2:]) in SHARED_HOSTING:
+        return ".".join(labels[-3:])
+    if len(labels) >= 3 and len(labels[-1]) == 2 and labels[-2] in SECOND_LEVEL:
+        return ".".join(labels[-3:])
+    return ".".join(labels[-2:])
