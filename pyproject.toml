@@ -42,3 +42,4 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["realdata: needs downloaded data under data/raw (skipped when absent, e.g. in CI)"]
