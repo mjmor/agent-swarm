@@ -235,6 +235,8 @@ def test_normalize_confidence_never_upgrades():
 
 ### Stage 8: Technique tagging
 
+> **Scope revised by the owner (2026-09-26).** Tag only the technique *categories* the published reports already describe. Tags come from structural signals already in the canonical data: event types, publisher labels (e.g. Transluce `broad_class`, collusion.wiki probe events) and Stage 7 indicators. There is no text-level rule detail and no per-technique payload regexes. Writing or adopting detection rules over payload text is parked in `docs/todo.md`. The precision audit below is therefore replaced by a check that every tag traces to its structural basis. The original design follows for reference.
+
 **Files:** `src/agent_swarm/techniques.py`, `tests/test_techniques.py`, `notebooks/07_techniques.ipynb`.
 
 A taxonomy of ~15 techniques, each mapped to MITRE ATT&CK where one applies: `get_to_write` (writes via GET/form params), `reader_proxy`, `cors_relay`, `shortener_chain`, `pastebin_dropbox`, `url_scanner_relay`, `xss_probe`, `ssrf_probe`, `sqli_or_param_fuzz`, `mass_account_creation`, `captcha_solving`, `dns_exfiltration`, `heartbeat_deadman`, `moderator_impersonation`, `layered_encoding`, `credential_harvest`, `k8s_recon`, `package_registry_abuse`. Rules are regex/structural (e.g. `layered_encoding` = decode depth ≥2 in swarmtraces). Output `techniques.parquet` (`event_id`, `technique`, `rule_id`).

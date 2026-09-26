@@ -10,7 +10,7 @@ Public researchers have published several incident reports about **swarms of AI 
 2. **Extracts shared identifiers and patterns** across incidents (handles, naming conventions, relay/proxy/shortener services, egress networks, timelines, techniques, vulnerabilities targeted). These give a consolidated view of how the incidents connect and a detection basis for finding more agents.
 3. **Hunts for additional rogue agent activity** on the public internet using those identifiers (later phase).
 
-The plan for (1) and (2) is in [`docs/analysis-plan.md`](docs/analysis-plan.md).
+The plan for (1) and (2) is in [`docs/analysis-plan.md`](docs/analysis-plan.md). Parked and deferred work is tracked in [`docs/todo.md`](docs/todo.md); add to it whenever something is set aside.
 
 ## Handling rules: read before touching the data
 
@@ -120,8 +120,8 @@ On 2026-05-11 and 05-12, agents uploaded over 2,000 malicious gems. They used Ru
 - `hf-incident-technical-report.pdf`: OpenAI's technical report on the Hugging Face/Artifactory incident, with a timeline and techniques. It is the main source for the Artifactory message board (from 5/12) and the 5/26 Artifactory exploit.
 - `chatgpt-user.json`: OpenAI's published ChatGPT-User egress prefixes (230 IPv4 /28s). **This is the live list** (creationTime 2026-09-25). The collusion.wiki report used the 2025-10-25 Wayback snapshot, and historical snapshots are needed for May–July matching.
 - `metr/hf-incident-investigation.html`: METR's independent investigation.
-- `openai-official/hf-incident-and-the-road-ahead.pdf`: the OpenAI blog post. openai.com returns **403** to automated fetches, so it is a `manual = true` artifact that has to be saved by hand (browser "Save as PDF") at that path. The first hand download turned out to be byte-identical to the technical report, and the manifest flags it as `duplicate`.
-- `termina-swarm-map/agent-pastes-2026-09-08.tar.gz` (a community venue/handle map) returns **503** ("public exports temporarily unavailable"). **Pending:** the owner asked that it be retried periodically. Re-run `uv run agent-swarm acquire --only termina-swarm-map` at the start of each work session and when a stage finishes.
+- `openai-official/hf-incident-and-the-road-ahead.pdf`: the OpenAI blog post "The Hugging Face incident and the road ahead" (2026-08-26, 16 pages). openai.com returns **403** to automated fetches, so it is a `manual = true` artifact saved by hand. It was registered on 2026-09-26 (1,164,968 bytes; sha256 `de40eb72…ba8c20`).
+- `termina-swarm-map/agent-pastes-2026-09-08.tar.gz` (a community venue/handle map) returns **503** ("public exports temporarily unavailable"). **Pending:** tracked in [`docs/todo.md`](docs/todo.md) with the other parked work.
 
 ### Cross-dataset observations (first pass, to be validated in the plan)
 

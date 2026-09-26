@@ -146,12 +146,11 @@
   "openai-official/hf-incident-and-the-road-ahead.pdf": {
     "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
     "kind": "reference",
-    "fetched_at": "2026-09-25T23:58:44.643616+00:00",
-    "status": "duplicate",
+    "fetched_at": "2026-09-26T12:50:19.872443+00:00",
+    "status": "ok",
     "origin": "manual",
-    "sha256": "dd635cf6e5f39f0e1f646f08c36549090d77156ed89cbd3d733ed496648cae9c",
-    "bytes": 521159,
-    "duplicate_of": "openai-official/hf-incident-technical-report.pdf"
+    "sha256": "de40eb727ffa56bb7c1fc8c972e9db2fb30257522cd6d9434afb4adfdfba8c20",
+    "bytes": 1164968
   },
   "openai-official/hf-incident-technical-report.pdf": {
     "url": "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
