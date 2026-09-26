@@ -13,7 +13,8 @@ def main(argv: list[str] | None = None) -> None:
     extract = sub.add_parser("extract", help="raw -> interim parquet + processed events per source")
     extract.add_argument("sources", nargs="+", choices=sorted(EXTRACTORS))
     sub.add_parser("build", help="union processed events; write incidents, timeline, data quality")
-    sub.add_parser("all", help="extract every source, then build")
+    sub.add_parser("indicators", help="extract identifiers from events into indicators.parquet")
+    sub.add_parser("all", help="extract every source, then build, then indicators")
     args = parser.parse_args(argv)
 
     if args.command == "acquire":
@@ -38,3 +39,9 @@ def main(argv: list[str] | None = None) -> None:
         from agent_swarm import build
 
         print(build.build(INTERIM_DIR, PROCESSED_DIR))
+
+    if args.command in ("indicators", "all"):
+        from agent_swarm import indicators
+
+        found = indicators.build_indicators(INTERIM_DIR, PROCESSED_DIR)
+        print(f"[indicators] {found.height:,} rows")
