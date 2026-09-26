@@ -18,7 +18,7 @@ EVENT_TYPES = {
 }
 MAX_DEPTH = 256
 AGENT_ID_RE = re.compile(r"""["']?agent_?id["']?\s*[:=]\s*["']([^"'\\]{1,80})["']""", re.I)
-DATE_RE = re.compile(r"\b(2026-0[1-9]-[0-3]\d)\b")
+DATE_RE = re.compile(r"(?<!\d)(2026-0[1-9]-[0-3]\d)(?!\d)")
 
 
 def tree(df: pl.DataFrame) -> pl.DataFrame:

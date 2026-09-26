@@ -33,7 +33,7 @@ ROWS = [
     rec(
         "R2",
         "recovered_text",
-        "import os # scan 2026-07-10 and 2011-06-15, again 2026-07-10",
+        "import os # scan 2026-07-10 and 2011-06-15, again 2026-07-10, at 2026-04-25T10:11:12Z",
         parent="R1",
     ),
     rec(
@@ -109,7 +109,7 @@ def test_cycles_terminate_and_are_flagged(events):
 
 def test_ts_hints_are_extra_only_and_in_window(events):
     r2 = row(events, "R2")
-    assert r2["x"]["ts_hints"] == ["2026-07-10"]
+    assert r2["x"]["ts_hints"] == ["2026-04-25", "2026-07-10"]
     assert r2["ts_utc"] is None
 
 
