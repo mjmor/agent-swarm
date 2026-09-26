@@ -101,6 +101,8 @@ def _sha256(text: str | None) -> str | None:
 
 
 def finalize(df: pl.DataFrame) -> pl.DataFrame:
+    if "text" not in df.columns:
+        df = df.with_columns(pl.lit(None, dtype=pl.String).alias("text"))
     text = pl.col("text")
     out = df.with_columns(
         event_id_expr().alias("event_id"),
