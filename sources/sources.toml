@@ -195,3 +195,16 @@ report_url = "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-inve
 name = "hf-incident-investigation.html"
 url = "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/"
 kind = "reference"
+
+# RubyGems public database dump (weekly; sanitized: no emails or API keys). Dumps before
+# 2026-07-27 are in S3 Glacier (not publicly downloadable); 2026-07-27 is the earliest
+# retrievable one. The live API returns 404 for every gem named in rubyhack.ai (2026-09-26).
+[[source]]
+id = "rubygems-dump"
+title = "RubyGems public PostgreSQL dump, 2026-07-27"
+report_url = "https://rubygems.org/pages/data"
+
+[[source.artifact]]
+name = "public_postgresql-2026.07.27.tar"
+url = "https://s3-us-west-2.amazonaws.com/rubygems-dumps/production/public_postgresql/2026.07.27.21.21.01/public_postgresql.tar"
+kind = "dataset"
