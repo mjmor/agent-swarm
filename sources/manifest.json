@@ -146,12 +146,11 @@
   "openai-official/hf-incident-and-the-road-ahead.pdf": {
     "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
     "kind": "reference",
-    "fetched_at": "2026-09-25T23:58:44.643616+00:00",
-    "status": "duplicate",
+    "fetched_at": "2026-09-26T13:25:15.884233+00:00",
+    "status": "ok",
     "origin": "manual",
-    "sha256": "dd635cf6e5f39f0e1f646f08c36549090d77156ed89cbd3d733ed496648cae9c",
-    "bytes": 521159,
-    "duplicate_of": "openai-official/hf-incident-technical-report.pdf"
+    "sha256": "de40eb727ffa56bb7c1fc8c972e9db2fb30257522cd6d9434afb4adfdfba8c20",
+    "bytes": 1164968
   },
   "openai-official/hf-incident-technical-report.pdf": {
     "url": "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
@@ -161,6 +160,15 @@
     "sha256": "dd635cf6e5f39f0e1f646f08c36549090d77156ed89cbd3d733ed496648cae9c",
     "bytes": 521159,
     "content_type": "application/pdf"
+  },
+  "rubygems-dump/public_postgresql-2026.07.27.tar": {
+    "url": "https://s3-us-west-2.amazonaws.com/rubygems-dumps/production/public_postgresql/2026.07.27.21.21.01/public_postgresql.tar",
+    "kind": "dataset",
+    "fetched_at": "2026-09-26T13:23:21.893590+00:00",
+    "status": "ok",
+    "sha256": "74b9dde3591cda43b140e21eaf38e8141eb73a5c98489cffe271edf0f5759b89",
+    "bytes": 648448000,
+    "content_type": "binary/octet-stream"
   },
   "rubyhack/report.html": {
     "url": "https://rubyhack.ai/",
@@ -237,7 +245,7 @@
   "termina-swarm-map/agent-pastes-2026-09-08.tar.gz": {
     "url": "https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz",
     "kind": "dataset",
-    "fetched_at": "2026-09-25T23:58:44.111522+00:00",
+    "fetched_at": "2026-09-26T13:25:15.137237+00:00",
     "status": "error",
     "error": "HTTPStatusError: Server error '503 OK' for url 'https://swarm.termina.digital/pub/datasets/agent-pastes-2026-09-08.tar.gz'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
   },

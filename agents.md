@@ -61,6 +61,8 @@ If `uv` can't write its cache in a sandboxed shell, set `UV_CACHE_DIR=$TMPDIR/uv
 - `data/processed/indicators.parquet`: one row per event × identifier (`indicator_type`, `value`, `value_norm`, and `extractor` = the rule that fired). Service roles come from the collusion.wiki venue census + `reference.SERVICE_SEEDS` + URL nesting + a narrow CORS/proxy heuristic.
 - `data/processed/links/{link_keys,bridges,incident_overlap}.parquet`: cross-incident link keys (registrable domains incl. event venues, gems, handles, `oai` tokens, informative name shapes; moderator, low-confidence and duplicate rows excluded), bridges seen in ≥2 incidents, and pairwise overlap.
 
+Enrichment (plan Stage 10) is separate from `all` because it makes many third-party requests. Run `uv run agent-swarm enrich {rubygems|urlquery-sample|wayback}`. It's resumable and rate-limited (urlquery 1 req/s). Item lists are committed in `sources/enrichment/*.items.tsv`; fetched files go to gitignored `data/raw/enrich-<target>/` with an append-only `_fetch_log.jsonl`. The RubyGems public dump is a pinned `acquire` artifact (`rubygems-dump`). urlquery's terms allow non-commercial research but not redistribution, so publish only aggregates from its reports.
+
 Notebooks, numbered by plan stage, read only these outputs. To re-execute one: `uv run jupyter nbconvert --to notebook --execute --inplace notebooks/NN_*.ipynb`.
 
 | Notebook | Covers |
