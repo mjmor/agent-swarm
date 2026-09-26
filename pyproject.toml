@@ -40,6 +40,9 @@ extend-include = ["*.ipynb"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E501"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = ["realdata: needs downloaded data under data/raw (skipped when absent, e.g. in CI)"]
