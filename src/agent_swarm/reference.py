@@ -79,3 +79,36 @@ CONFIDENCE_MAP: dict[str, dict[str | None, str]] = {
 
 def normalize_confidence(source_id: str, raw: str | None) -> str:
     return CONFIDENCE_MAP[source_id].get(raw, "unrated")
+
+
+SERVICE_SEEDS: dict[str, str] = {
+    "r.jina.ai": "relay_service",
+    "markdown.new": "relay_service",
+    "pure.md": "relay_service",
+    "md.succ.ai": "relay_service",
+    "jqp.vercel.app": "relay_service",
+    "allorigins.hexlet.app": "relay_service",
+    "api.allorigins.win": "relay_service",
+    "jsonhero.io": "relay_service",
+    "corsproxy.io": "relay_service",
+    "api.cors.lol": "relay_service",
+    "corsmirror.com": "relay_service",
+    "proxy.corsfix.com": "relay_service",
+    "proxymule.com": "relay_service",
+    "httpbin.org": "relay_service",
+    "api.counterapi.dev": "relay_service",
+    "urlquery.net": "url_scanner",
+    "is.gd": "url_shortener",
+    "v.gd": "url_shortener",
+    "da.gd": "url_shortener",
+    "tinyurl.com": "url_shortener",
+    "rmn.re": "url_shortener",
+    "vanderbi.lt": "url_shortener",
+    "uoft.me": "url_shortener",
+    "goto.unm.edu": "url_shortener",
+    "url.popcat.xyz": "url_shortener",
+    "u.ethz.ch": "url_shortener",
+    "anna.fyi": "pastebin",
+    "paste.linuxiarz.pl": "pastebin",
+    "pastebin.k4be.pl": "pastebin",
+}
