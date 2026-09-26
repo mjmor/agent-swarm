@@ -112,3 +112,15 @@ SERVICE_SEEDS: dict[str, str] = {
     "paste.linuxiarz.pl": "pastebin",
     "pastebin.k4be.pl": "pastebin",
 }
+
+GENERIC_DOMAINS = frozenset(
+    {
+        "google.com",
+        "github.com",
+        "githubusercontent.com",
+        "example.com",
+        "example.org",
+        "wikipedia.org",
+        "archive.org",
+    }
+)
