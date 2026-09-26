@@ -50,6 +50,25 @@ If `uv` can't write its cache in a sandboxed shell, set `UV_CACHE_DIR=$TMPDIR/uv
 
 `acquire` is idempotent. It skips files whose sha256 matches the manifest and prunes manifest entries no longer in `sources.toml`. Artifacts marked `manual = true` are never downloaded. If someone saved one by hand at `data/raw/<source id>/<name>`, it's registered (status `ok`, `origin: manual`); otherwise it's reported as `missing_manual`. A hand-saved file that is byte-identical to another artifact is flagged `duplicate`.
 
+## Pipeline and notebooks
+
+`uv run agent-swarm all` rebuilds everything from `data/raw`. It runs `extract <source>` for every source, then `build`:
+
+- `data/interim/<source>/*.parquet`: source-shaped tables. These are typed and lossless; heterogeneous JSON is kept in `raw`/`extra`.
+- `data/processed/events_<source>.parquet` → `events.parquet`: the canonical event table (schema in `src/agent_swarm/schema.py`, contract in `docs/analysis-plan.md`).
+- `data/processed/timeline_daily.parquet`: daily counts with `origin` = `row_level` | `published_aggregate`. Never sum the two origins.
+- `data/processed/incidents.parquet`, `data/processed/data_quality.json`.
+
+Notebooks, numbered by plan stage, read only these outputs. To re-execute one: `uv run jupyter nbconvert --to notebook --execute --inplace notebooks/NN_*.ipynb`.
+
+| Notebook | Covers |
+|---|---|
+| `01_collusion_wiki` | wiki board activity, handles, /16 networks, venues, relay services |
+| `02_transluce_urlquery` | urlquery relaying: timing, task targets, confidence, detector overlap with the wiki |
+| `03_swarmtraces` | Hugging Face chains: tree shape, redactions, text date hints, vocabulary |
+| `04_rubyhack` | RubyGems burst, gem-name themes, agent-embedded timestamps |
+| `05_unified_timeline` | all incidents on one axis, overlap days, what can't be dated |
+
 ## Git workflow
 
 - Public repo: https://github.com/mjmor/agent-swarm. Setup, data acquisition, surveys and plans were committed directly to `main`.
