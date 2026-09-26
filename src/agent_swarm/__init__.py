@@ -12,6 +12,8 @@ def main(argv: list[str] | None = None) -> None:
     acquire.add_argument("--only", nargs="*", help="source ids to fetch (default: all)")
     extract = sub.add_parser("extract", help="raw -> interim parquet + processed events per source")
     extract.add_argument("sources", nargs="+", choices=sorted(EXTRACTORS))
+    sub.add_parser("build", help="union processed events; write incidents, timeline, data quality")
+    sub.add_parser("all", help="extract every source, then build")
     args = parser.parse_args(argv)
 
     if args.command == "acquire":
@@ -27,7 +29,12 @@ def main(argv: list[str] | None = None) -> None:
         if failed:
             print(f"{len(failed)} artifact(s) failed: {', '.join(failed)}")
 
-    if args.command == "extract":
-        for source in args.sources:
+    if args.command in ("extract", "all"):
+        for source in args.sources if args.command == "extract" else sorted(EXTRACTORS):
             events = EXTRACTORS[source](RAW_DIR, INTERIM_DIR, PROCESSED_DIR)
             print(f"[{source}] {events.height:,} events")
+
+    if args.command in ("build", "all"):
+        from agent_swarm import build
+
+        print(build.build(INTERIM_DIR, PROCESSED_DIR))
