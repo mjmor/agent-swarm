@@ -235,6 +235,8 @@ def test_normalize_confidence_never_upgrades():
 
 ### Stage 8: Technique tagging
 
+> **Parked (2026-09-26).** See `docs/todo.md`; Stage 9 proceeds without technique overlap.
+>
 > **Scope revised by the owner (2026-09-26).** Tag only the technique *categories* the published reports already describe. Tags come from structural signals already in the canonical data: event types, publisher labels (e.g. Transluce `broad_class`, collusion.wiki probe events) and Stage 7 indicators. There is no text-level rule detail and no per-technique payload regexes. Writing or adopting detection rules over payload text is parked in `docs/todo.md`. The precision audit below is therefore replaced by a check that every tag traces to its structural basis. The original design follows for reference.
 
 **Files:** `src/agent_swarm/techniques.py`, `tests/test_techniques.py`, `notebooks/07_techniques.ipynb`.

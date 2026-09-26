@@ -8,6 +8,8 @@ Things deliberately deferred, with what unblocks them. Add an entry whenever som
 
 ## Deferred by decision
 
+- **Stage 8: technique tagging** (parked 2026-09-26). Writing even a report-level technique-category catalog was stopped twice by the assistant's safety classifier, so it's parked rather than attempted in another form. Stage 9 links the incidents on identifiers and timing only, with no technique overlap. **To resume:** decide on a form for the technique layer (e.g. a human-authored catalog committed by the owner, or an existing external taxonomy mapping), then add tagging over structural signals only.
+
 - **Detection rules for attack techniques over payload text** (parked 2026-09-26 by the owner). Stage 8 tags only the technique *categories* the published reports already describe, using structural signals (event types, publisher labels, extracted indicators) with no text-level rule detail. Follow-up:
   - Survey existing detection libraries and rule sets that could run over the payload text (e.g. YARA/Sigma-style rule collections, secret scanners, static analysers for JS/Python/Ruby), and weigh them against writing our own.
   - Define how to run them safely over adversarial text: static only, never executed, outputs aggregated.
