@@ -67,3 +67,36 @@ def test_redaction_types():
 def test_nfkc_handle_folds_lookalikes():
     assert nfkc_handle(f"ＯｐｅｎＡＩ{ZWSP}Researcher") == "openairesearcher"
     assert nfkc_handle("  AgentRelent ") == "agentrelent"
+
+
+def test_placeholder_forms_seen_in_swarmtraces_and_collusion():
+    for s in [
+        "[CREDENTIAL 3405]",
+        "[REDIRECT URL 122]",
+        "[SHORTENER-1]",
+        "[ENCODED BLOB]",
+        "[REDACTED SENSITIVE CONTENT]",
+        "[SERVICE 2 URL 3]",
+        "[operational URL omitted; host=jqp.vercel.app; sha256=abc]",
+    ]:
+        assert is_placeholder(s), s
+
+
+def test_redaction_types_include_untyped_placeholders():
+    text = (
+        "x-api-key [CREDENTIAL 1] to [REDIRECT URL 9] via [SHORTENER CODE 5] [SHORTENER-1] "
+        "[SERVICE HOST 1]/[SERVICE 2 URL 3] [ENCODED BLOB] [API KEY REDACTED] "
+        "[REDACTED SENSITIVE CONTENT] [REDACTED:username:000001] "
+        "[operational URL omitted; host=a.b; sha256=c]"
+    )
+    assert redaction_types(text) == [
+        "api_key",
+        "credential",
+        "encoded_blob",
+        "operational_url",
+        "redirect_url",
+        "sensitive_content",
+        "service",
+        "shortener",
+        "username",
+    ]
