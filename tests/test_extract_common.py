@@ -74,3 +74,21 @@ def test_finalize_handles_null_text():
     )
     row = finalize(df).row(0, named=True)
     assert row["urls"] == [] and row["redaction_types"] == [] and row["text_sha256"] is None
+
+
+def test_finalize_accepts_frames_without_text_column():
+    df = pl.DataFrame(
+        {
+            "source_id": ["transluce-urlquery"],
+            "incident_id": ["urlquery-relay"],
+            "artifact": ["t/a.zip"],
+            "native_id": ["r1"],
+            "event_type": ["url_scan"],
+            "ts_utc": [datetime(2026, 6, 1, tzinfo=UTC)],
+            "ts_precision": ["second"],
+            "confidence": ["high"],
+            "actor_role": ["agent"],
+        }
+    )
+    row = finalize(df).row(0, named=True)
+    assert row["text"] is None and row["urls"] == []
