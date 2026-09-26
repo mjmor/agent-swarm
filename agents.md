@@ -52,12 +52,13 @@ If `uv` can't write its cache in a sandboxed shell, set `UV_CACHE_DIR=$TMPDIR/uv
 
 ## Pipeline and notebooks
 
-`uv run agent-swarm all` rebuilds everything from `data/raw`. It runs `extract <source>` for every source, then `build`:
+`uv run agent-swarm all` rebuilds everything from `data/raw`. It runs `extract <source>` for every source, then `build`, then `indicators`:
 
 - `data/interim/<source>/*.parquet`: source-shaped tables. These are typed and lossless; heterogeneous JSON is kept in `raw`/`extra`.
 - `data/processed/events_<source>.parquet` → `events.parquet`: the canonical event table (schema in `src/agent_swarm/schema.py`, contract in `docs/analysis-plan.md`).
 - `data/processed/timeline_daily.parquet`: daily counts with `origin` = `row_level` | `published_aggregate`. Never sum the two origins.
 - `data/processed/incidents.parquet`, `data/processed/data_quality.json`.
+- `data/processed/indicators.parquet`: one row per event × identifier (`indicator_type`, `value`, `value_norm`, and `extractor` = the rule that fired). Service roles come from the collusion.wiki venue census + `reference.SERVICE_SEEDS` + URL nesting + a narrow CORS/proxy heuristic.
 
 Notebooks, numbered by plan stage, read only these outputs. To re-execute one: `uv run jupyter nbconvert --to notebook --execute --inplace notebooks/NN_*.ipynb`.
 
@@ -68,6 +69,7 @@ Notebooks, numbered by plan stage, read only these outputs. To re-execute one: `
 | `03_swarmtraces` | Hugging Face chains: tree shape, redactions, text date hints, vocabulary |
 | `04_rubyhack` | RubyGems burst, gem-name themes, agent-embedded timestamps |
 | `05_unified_timeline` | all incidents on one axis, overlap days, what can't be dated |
+| `06_indicators` | identifier exposure per incident, relay services, naming shapes, shared targets and gems |
 
 ## Git workflow
 
