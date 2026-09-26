@@ -16,6 +16,8 @@ def main(argv: list[str] | None = None) -> None:
     sub.add_parser("indicators", help="extract identifiers from events into indicators.parquet")
     sub.add_parser("link", help="cross-incident link keys, bridges and overlap from indicators")
     sub.add_parser("all", help="extract every source, then build, indicators and link")
+    enrich_cmd = sub.add_parser("enrich", help="fetch per-item enrichment data (rate-limited)")
+    enrich_cmd.add_argument("target", choices=["rubygems", "urlquery-sample", "wayback"])
     args = parser.parse_args(argv)
 
     if args.command == "acquire":
@@ -51,3 +53,14 @@ def main(argv: list[str] | None = None) -> None:
         from agent_swarm import link
 
         print(f"[link] {link.build_links(PROCESSED_DIR)}")
+
+    if args.command == "enrich":
+        from agent_swarm import enrich
+
+        log = enrich.run_enrichment(
+            args.target,
+            processed_dir=PROCESSED_DIR,
+            raw_dir=RAW_DIR,
+            lists_dir=SOURCES_TOML.parent / "enrichment",
+        )
+        print(log.group_by("status").len().sort("status"))
